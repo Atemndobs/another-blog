@@ -8,7 +8,7 @@ admin//package-lock.json
 admin/public/bundles/
 #/var/
 admin/vendor/
-admin/.idea
+.idea
 
 admin/var/cache/
 admin/var/log/
@@ -28,7 +28,7 @@ admin/phpunit.xml
 ###< lexik/jwt-authentication-bundle ###
 
 ###> behat/symfony2-extension ###
-admin/ehat.yml
+admin/behat.yml
 ###< behat/symfony2-extension ###
 
 
@@ -59,4 +59,4 @@ client/node_modules
 /client/yarn-debug.log*
 /client/yarn-error.log*
 
-react-hooks
+./admin/.idea
