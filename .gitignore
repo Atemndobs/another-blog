@@ -60,4 +60,4 @@ client/node_modules
 /client/yarn-error.log*
 
 ./admin/.idea
-.idea
+/.idea
