@@ -1,0 +1,60 @@
+###> symfony/framework-bundle ###
+
+admin/.env.local
+admin/.env.local.php
+admin/.env.*.local
+#/config/secrets/prod/prod.decrypt.private.php
+admin//package-lock.json
+admin/public/bundles/
+#/var/
+admin/vendor/
+
+
+admin/var/cache/
+admin/var/log/
+admin/var/sessions/
+admin/var/spool/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+admin/phpunit
+admin/phpunit.result.cache
+admin/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+
+###> lexik/jwt-authentication-bundle ###
+#/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> behat/symfony2-extension ###
+admin/ehat.yml
+###< behat/symfony2-extension ###
+
+
+###> symfony/framework-bundle ###
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+client/node_modules
+/client/.pnp
+/client/.pnp.js
+
+# testing
+/client/coverage
+
+# production
+/client/build
+
+# misc
+/client/.DS_Store
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*

@@ -1,0 +1,35 @@
+###> symfony/framework-bundle ###
+/
+/.env.local
+/.env.local.php
+/.env.*.local
+#/config/secrets/prod/prod.decrypt.private.php
+./package-lock.json
+/public/bundles/
+#/var/
+/vendor/
+/heroku/
+
+/var/cache/
+/var/log/
+/var/sessions/
+/var/spool/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+
+###> lexik/jwt-authentication-bundle ###
+#/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###
+
+
+###> symfony/framework-bundle ###
