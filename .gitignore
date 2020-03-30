@@ -8,7 +8,7 @@ admin//package-lock.json
 admin/public/bundles/
 #/var/
 admin/vendor/
-
+admin/.idea
 
 admin/var/cache/
 admin/var/log/
