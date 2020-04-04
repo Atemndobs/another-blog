@@ -1,4 +1,4 @@
-import {BLOG_POST_LIST_REQUST, BLOG_POST_LIST_ADD, BLOG_POST_LIST_RECIEVED, BLOG_POST_LIST_ERROR } from "../actions/actions";
+import {BLOG_POST_LIST_REQUST, BLOG_POST_LIST_ADD, BLOG_POST_LIST_RECIEVED, BLOG_POST_LIST_ERROR } from "../actions/constants";
 
 export default(state = {
     posts: null,
@@ -8,7 +8,7 @@ export default(state = {
         case BLOG_POST_LIST_REQUST:
             state =  {
                 ...state,
-                isFetching:true
+                isFetching: true
             };
             console.log(state);
             return state;

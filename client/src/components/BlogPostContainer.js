@@ -1,30 +1,35 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import {blogPostFetch} from '../actions/actions';
+import { connect } from 'react-redux';
+import BlogPost from './BlogPost'
 
-class BlogPostContainer extends React.Component {
+const mapStateToProps = state => ({
+    ...state.blogPost
+});
+
+const mapDispatchToProps = {
+    blogPostFetch
+};
+
+ class BlogPostContainer extends React.Component {
 
     componentDidMount(){
 
-        console.log(this.props.match.params.id);
+        console.log(this.props);
+        console.log(this.props.match.params.id)
+        
+
+        this.props.blogPostFetch(this.props.match.params.id)
+        .then(Response => console.log(this.props.post));
+        
 
 
     }
     render() {
         return (
-
-            <div class="App card mb-3 mt-3 shadow-sm App-header">
-                <div class="card-body">
-                    <h3 >
-                        Single Post
-                    </h3>
-                    <p class="card-text border-top"> Post name</p>
-                    <small className="text-muted">
-                        time
-                    </small>
-                </div>
-            </div>
+            <BlogPost />
         );
     }
 }
 
-export default BlogPostContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(BlogPostContainer);

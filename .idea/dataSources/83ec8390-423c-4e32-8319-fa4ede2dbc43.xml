@@ -55,7 +55,6 @@
     </column>
     <index id="20" parent="6" name="IDX_BA5AE01DF675F31B">
       <ColNames>author_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="21" parent="6">
       <ColNames>id</ColNames>
@@ -80,16 +79,13 @@
       <NameSurrogate>1</NameSurrogate>
       <ColNames>blog_post_id
 image_id</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <index id="26" parent="7" name="IDX_B4E0AA59A77FBEAF">
       <ColNames>blog_post_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <index id="27" parent="7" name="IDX_B4E0AA593DA5256D">
       <ColNames>image_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="28" parent="7">
       <ColNames>blog_post_id
@@ -137,11 +133,9 @@ image_id</ColNames>
     </column>
     <index id="36" parent="8" name="IDX_9474526CF675F31B">
       <ColNames>author_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <index id="37" parent="8" name="IDX_9474526CA77FBEAF">
       <ColNames>blog_post_id</ColNames>
-      <ColumnCollations></ColumnCollations>
     </index>
     <key id="38" parent="8">
       <ColNames>id</ColNames>
@@ -185,7 +179,6 @@ image_id</ColNames>
     <index id="46" parent="10" name="sqlite_autoindex_migration_versions_1">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
-      <ColumnCollations></ColumnCollations>
       <Unique>1</Unique>
     </index>
     <key id="47" parent="10">

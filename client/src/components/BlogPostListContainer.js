@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
     ...state.blogPostList
 });
 
+
 const mapDispatchToProps = {
     blogPostAdd,
     blogPostListFetch

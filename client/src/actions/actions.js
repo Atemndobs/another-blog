@@ -1,11 +1,16 @@
 import { requests } from "../ajent";
 
+import {
+    BLOG_POST_LIST_ADD, 
+    BLOG_POST_LIST_REQUST, 
+    BLOG_POST_LIST_RECIEVED, 
+    BLOG_POST_LIST_ERROR,
+    BLOG_POST_RECIEVED,
+    BLOG_POST_REQUST, 
+    BLOG_POST_ERROR 
+}  from "./constants" ;
 
 
-export const BLOG_POST_LIST_RECIEVED = 'BLOG_POST_LIST_RECIEVED';
-export const BLOG_POST_LIST_ERROR = 'BLOG_POST_LIST_ERROR';
-export const BLOG_POST_LIST_ADD = 'BLOG_POST_LIST_ADD';
-export const BLOG_POST_LIST_REQUST = 'BLOG_POST_LIST_REQUST';
 
 export const blogPostListRequest = () => ({
     type: BLOG_POST_LIST_REQUST,
@@ -34,6 +39,33 @@ export const blogPostListFetch = () => {
 
     }
 };
+
+export const blogPostRequest = () => ({
+    type: BLOG_POST_REQUST,
+})
+
+export const blogPostError = () => ({
+    type: BLOG_POST_ERROR,
+
+});
+
+
+export const blogPostReceieved = (data) => ({
+    type: BLOG_POST_RECIEVED,
+    data
+});
+
+
+export const blogPostFetch = (id) => {
+    return (dispatch) => {
+        dispatch(blogPostRequest());
+        return requests.get(`/blog_posts/${id}`)
+        .then(response => dispatch(blogPostReceieved(response))
+            ).catch(error => dispatch(blogPostError(error)))
+
+    }
+};
+
 
 export const blogPostAdd = () => ({
     type: BLOG_POST_LIST_ADD,
