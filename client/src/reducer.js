@@ -6,5 +6,6 @@ import blogPost from "./reducers/blogPost";
 
 export default combineReducers({
     blogPostList,
+    blogPost
 
 });
