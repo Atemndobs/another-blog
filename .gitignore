@@ -6,7 +6,7 @@ admin/.env.*.local
 #/config/secrets/prod/prod.decrypt.private.php
 /admin//package-lock.json
 /admin/public/bundles/
-/vue-screencasts-masters
+
 #/var/
 /admin/vendor/
 .idea
@@ -41,6 +41,8 @@ admin/.env.*.local
 # dependencies
 client-react-app/node_modules
 client-nuxt-app/node_modules
+/vue-screencasts-master
+/api-platform-react-js-master
 /client/.pnp
 /client/.pnp.js
 
