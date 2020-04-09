@@ -114,17 +114,3 @@ style
 
 </style>
 
-
-data() {
-return {
-valid: false,
-showPassword: false,
-userInfo: {
-email: '',
-password: ''
-},
-...validations
-}
-},
-props: ["submitForm", "buttonText", "hasName"]
-}

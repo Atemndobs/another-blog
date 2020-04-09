@@ -2,7 +2,7 @@
 
   <div >
     <!--/.Navbar -->
-    <mdb-navbar expand="large" dark color="stylish">
+    <mdb-navbar expand="large" dark color="stylish" >
       <mdb-navbar-brand href="#">
      <!--   Navbar[logo]-->
       </mdb-navbar-brand>
@@ -37,6 +37,7 @@
         <div v-else>
           <nuxt-link to="/login"> <mdb-btn  @click="">Login</mdb-btn></nuxt-link>
           <nuxt-link to="/register"> <mdb-btn  @click="">register</mdb-btn></nuxt-link>
+          <mdb-btn @click="chechLogin">AUTH</mdb-btn>
         </div>
 
       </mdb-navbar-toggler>
@@ -71,6 +72,14 @@
       mdbNavbarMenu,
       mdbDropdownItem,
       mdbIcon
+    },
+
+    methods :{
+      chechLogin() {
+        this.$auth.state.loggedIn = true;
+        console.log('ATEM')
+        console.log(this.$auth )
+      }
     }
   };
 </script>
