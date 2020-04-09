@@ -65,3 +65,6 @@ client-nuxt-app/node_modules
 
 /admin/.idea
 /.idea
+
+
+Makefile

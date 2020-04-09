@@ -742,13 +742,13 @@ async function mountApp (__app) {
   router.beforeEach(loadAsyncComponents.bind(_app))
   router.beforeEach(render.bind(_app))
 
-  // If page already is server rendered and it was done on the same route path as client-react-app side render
+  // If page already is server rendered and it was done on the same route path as client side render
   if (NUXT.serverRendered && NUXT.routePath === _app.context.route.path) {
     mount()
     return
   }
 
-  // First render on client-react-app-side
+  // First render on client-side
   const clientFirstMount = () => {
     normalizeComponents(router.currentRoute, router.currentRoute)
     showNextPage.call(_app, router.currentRoute)

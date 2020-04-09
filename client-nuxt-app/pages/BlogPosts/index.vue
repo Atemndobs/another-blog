@@ -12,6 +12,7 @@
 import axios from 'axios'
 import BlogPost from "../../components/BlogPost";
 import SearchPosts from "../../components/SearchPosts";
+import  {mapMutations} from 'vuex'
 
 export default {
   components: {
@@ -22,24 +23,7 @@ export default {
     let response = await $axios.get('/blog_posts');
     let posts = response.data["hydra:member"];
     store.commit('SET_POSTS', posts )
-
   },
-/*  async created() {
-    const config = {
-      headers: {
-        Accept: "application/json"
-      }
-    };
-
-    try {
-      const res = await axios.get("https://127.0.0.1:8000/api/blog_posts", config);
-
-      this.posts = res.data;
-
-    } catch (err) {
-      console.log(err);
-    }
-  },*/
 
 
   methods: {
@@ -63,6 +47,9 @@ export default {
       }
     },
 
+    ...mapMutations({
+
+    }),
 
   },
   head() {
@@ -76,7 +63,8 @@ export default {
         }
       ]
     };
-  }
+  },
+
 };
 </script>
 

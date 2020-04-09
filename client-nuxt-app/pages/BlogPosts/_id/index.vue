@@ -8,23 +8,38 @@
       <mdb-card>
         <mdb-card-body>
           <div v-if="postEditId == post.id">
-            <mdb-input v-model="$store.state.currentPost.title"
-                       :id="`post-edit-${post.id}`"
-                       @blur="updatePostTitle(post)"
-                       @keydown.enter="updatePostTitle(post)"
 
-
-                       label="Edit Post"
+            <mdb-input :value="post.title"
+                       :id="`post-title-${post.id}`"
+                       @blur="setTitle(post)"
+                       label="Edit Title"
                        type="text" class="mt-0"
             />
+            <mdb-input :value="post.content"
+                       :id="`post-content-${post.id}`"
+                       @blur="setTitle(post) "
+                       label="Edit Comment"
+                       type="text" class="mt-0"
+            />
+            <mdb-input :value="post.published"
+                       :id="`post-published-${post.id}`"
+                       @blur="setTitle(post) "
+                       label="Edit time"
+                       type="text" class="mt-0"
+            />
+            <mdb-btn  @click="updatePostTitle(post)">Edit</mdb-btn>
+
+
+
           </div>
           <div v-else @click="setToEditId(post)">
-            <mdb-card-title>{{ $store.state.currentPost.title }}</mdb-card-title>
+            <mdb-card-title>{{ post.title }}</mdb-card-title>
+            <mdb-card-text>{{ post.content }}</mdb-card-text>
           </div>
-          <mdb-card-text>{{ $store.state.currentPost.content }}</mdb-card-text>
+
           <mdb-card-text>
             published : {{$store.state.currentPostTime }} | by
-            {{ $store.state.currentPost.author.name }}
+            {{ post.author.name }}
 
           </mdb-card-text>
           <mdb-card-text></mdb-card-text>
@@ -34,23 +49,27 @@
       </mdb-card>
     </div>
   </div>
+
 </template>
 
 <script>
-  //import axios from "axios";
-
   import {mdbCard, mdbCardImage, mdbCardBody, mdbCardTitle, mdbCardText, mdbBtn, mdbInput} from 'mdbvue';
 
-  import  {mapState} from 'vuex'
+  import {mapState} from 'vuex'
+  import AppHeader from "../../../components/AppHeader";
 
   export default {
     data() {
       return {
-        post: {},
+
         postEditId: ''
       };
     },
-
+    computed: {
+      ...mapState({
+        post: state => state.currentPost
+      })
+    },
     head() {
       return {
         title: this.$store.state.currentPost.title,
@@ -84,12 +103,13 @@
       },
       */
 
-    /*async asyncData({$axios, params}){
+/*    async asyncData({$axios, params}){
       let response = await $axios.get(`/blog_posts/${params.id}`);
       let post = response.data;
       return {
         post
-      }*/
+      }},*/
+
 
     async fetch({$axios, params, store}) {
       let response = await $axios.get(`/blog_posts/${params.id}`);
@@ -97,14 +117,54 @@
       store.commit('SET_CURRENT_POST', post);
     },
 
-    computed: {
-      ...mapState({
-        post : 'currentPost'
-      }),
-    },
 
+    methods: {
+      setToEditId(post) {
+        this.postEditId = post.id;
+        setTimeout(function () {
+          const elId = `post-title-${post.id}`;
+          document.getElementById(elId).focus()
+        }, 1);
+
+
+
+
+      },
+
+      setTitle(post) {
+        let title =  document.getElementById(`post-title-${post.id}`).value;
+        let content =  document.getElementById(`post-content-${post.id}`).value;
+        let published =  document.getElementById(`post-published-${post.id}`).value;
+
+        let params = {
+          id : post.id,
+          title : title,
+          content : content,
+          published: published
+        };
+        return params;
+      },
+
+/*      updatePostTitle(post) {
+        let params = this.setTitle(post)
+       // console.log(params)
+        this.$store.dispatch('updatePostTitle', {post});
+        this.postEditId = ''
+      },*/
+
+
+      async updatePostTitle(post) {
+          await this.$axios.put(`/blog_posts/${post.id}`, this.setTitle(post))
+        //this.$store.dispatch('updatePostTitle', {post});
+        this.postEditId = ''
+        console.log(this.setTitle(post))
+        }
+
+
+      },
 
     components: {
+      AppHeader,
       mdbCard,
       mdbCardImage,
       mdbCardBody,
@@ -113,23 +173,6 @@
       mdbBtn,
       mdbInput,
     },
-    methods: {
-      setToEditId(post) {
-        this.postEditId = post.id;
-
-        setTimeout(function () {
-          const elId = `post-edit-${post.id}`;
-          document.getElementById().focus(elId)
-        }, 1);
-      },
-
-      updatePostTitle(post) {
-        this - $store.dispatch('updatePostTitle', {post})
-        this.postEditId = '';
-      },
-
-    },
-
   };
 </script>
 
@@ -137,3 +180,10 @@
 </style>
 
 
+
+<!--
+@blur="updatePostTitle(post)"
+@keydown.enter="updatePostTitle(post)"
+       //
+       // this.postEditId = ''
+@keyup.13="updatePostTitle(post)"-->

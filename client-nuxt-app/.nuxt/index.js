@@ -12,9 +12,10 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_5586c7b0 from 'nuxt_plugin_workbox_5586c7b0' // Source: ./workbox.js (mode: 'client-react-app')
+import nuxt_plugin_workbox_5586c7b0 from 'nuxt_plugin_workbox_5586c7b0' // Source: ./workbox.js (mode: 'client')
 import nuxt_plugin_axios_52227a0c from 'nuxt_plugin_axios_52227a0c' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_axios_3566aa80 from 'nuxt_plugin_axios_3566aa80' // Source: ../plugins/axios (mode: 'all')
+import nuxt_plugin_plugin_c01e6370 from 'nuxt_plugin_plugin_c01e6370' // Source: ./auth/plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -26,7 +27,7 @@ Vue.component(NoSsr.name, {
     if (process.client && !NoSsr._warned) {
       NoSsr._warned = true
 
-      console.warn('<no-ssr> has been deprecated and will be removed in Nuxt 3, please use <client-react-app-only> instead')
+      console.warn('<no-ssr> has been deprecated and will be removed in Nuxt 3, please use <client-only> instead')
     }
     return NoSsr.render(h, ctx)
   }
@@ -36,7 +37,7 @@ Vue.component(NoSsr.name, {
 Vue.component(NuxtChild.name, NuxtChild)
 Vue.component('NChild', NuxtChild)
 
-// Component NuxtLink is imported in server.js or client-react-app.js
+// Component NuxtLink is imported in server.js or client.js
 
 // Component: <Nuxt>
 Vue.component(Nuxt.name, Nuxt)
@@ -186,6 +187,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_axios_3566aa80 === 'function') {
     await nuxt_plugin_axios_3566aa80(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_plugin_c01e6370 === 'function') {
+    await nuxt_plugin_plugin_c01e6370(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

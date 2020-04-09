@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header">
     <h2>Welcome to the mos recent news in your local area</h2>
   </div>
 </template>

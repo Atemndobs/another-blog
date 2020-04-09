@@ -1,7 +1,9 @@
 import Api from "@/services/api";
+import {format} from 'timeago.js';
 
 
-export default {
+
+export const state = () => ({
   namespaced: true,
   state: {
     posts: []
@@ -79,4 +81,4 @@ export default {
       return state.posts.find(p => p.id == id)
     },
   }
-}
+})

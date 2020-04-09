@@ -34,6 +34,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+
   ],
   /*
   ** Nuxt.js modules
@@ -41,7 +42,8 @@ export default {
   modules: [
     'mdbvue/nuxt',
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/auth'
   ],
   /*
   ** Build configuration
@@ -54,8 +56,25 @@ export default {
     }
   },
   axios: {
-    baseURL: 'https://127.0.0.1:8000/api'
+    baseURL: 'https://127.0.0.1:8000/api',
+    headers: {
+      'Content-Type': 'application/ld+json; charset=utf-8',
+    }
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login_check', method: 'post', propertyName: 'token' },
+          logout: { url: '/logout', method: 'post' },
+          user: { url: `/users/7`, method: 'get', propertyName: 'user' },
+        },
+        // tokenRequired: true,
+         tokenType: 'bearer'
+        // autoFetchUser: true
+      }
+    }
   }
 
 }
-
