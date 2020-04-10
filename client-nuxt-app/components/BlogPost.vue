@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="'blogposts/'+ id" v-if="$auth.token">
+  <nuxt-link :to="'blogposts/'+ id">
     <div class="joke">
       <mdb-card>
  <!--  <mdb-card-image src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%286%29.jpg" alt="Card image cap"></mdb-card-image>-->

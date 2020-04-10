@@ -101,9 +101,9 @@
         showPassword: false,
         userInfo: {
           name: 'Barak',
-          username: 'rowlings',
+          username: 'atemkeng',
           email: 'barak@gmail.com',
-          password: "Barak1234",
+          password: "Atem1234",
           retypedPassword: "Barak1234",
 
         },
