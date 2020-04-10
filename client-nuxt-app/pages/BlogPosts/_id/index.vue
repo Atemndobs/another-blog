@@ -4,6 +4,14 @@
     <nuxt-link to="/blogposts">
       <mdb-btn color="primary">👈 Back To Posts</mdb-btn>
     </nuxt-link>
+    <mdb-alert color="success" v-if="success">
+      You successfully edited your post. <nuxt-link :to="`/blogposts/${post.id}`">view your changes
+
+    </nuxt-link>
+    </mdb-alert>
+    <mdb-alert color="danger" v-if="error">
+      Access Denied. You are not authorized to edit this content.<a href="/blogposts" class="alert-link">back to all posts</a>.
+    </mdb-alert>
     <div class="joke">
       <mdb-card>
         <mdb-card-body>
@@ -12,6 +20,7 @@
             <mdb-input :value="post.title"
                        :id="`post-title-${post.id}`"
                        @blur="setTitle(post)"
+                       @keydown.enter="setTitle(post)"
                        label="Edit Title"
                        type="text" class="mt-0"
             />
@@ -28,8 +37,6 @@
                        type="text" class="mt-0"
             />
             <mdb-btn  @click="updatePostTitle(post)">Edit</mdb-btn>
-
-
 
           </div>
           <div v-else @click="setToEditId(post)">
@@ -53,7 +60,7 @@
 </template>
 
 <script>
-  import {mdbCard, mdbCardImage, mdbCardBody, mdbCardTitle, mdbCardText, mdbBtn, mdbInput} from 'mdbvue';
+  import {mdbCard, mdbCardImage, mdbCardBody, mdbCardTitle, mdbCardText, mdbBtn, mdbInput, mdbAlert} from 'mdbvue';
 
   import {mapState} from 'vuex'
   import AppHeader from "../../../components/AppHeader";
@@ -61,13 +68,15 @@
   export default {
     data() {
       return {
-        postEditId: ''
+        postEditId: '',
+        success: false,
       };
     },
     computed: {
       ...mapState({
         post: state => state.currentPost
-      })
+      }),
+
     },
     head() {
       return {
@@ -134,7 +143,7 @@
         let title =  document.getElementById(`post-title-${post.id}`).value;
         let content =  document.getElementById(`post-content-${post.id}`).value;
         let published =  document.getElementById(`post-published-${post.id}`).value;
-
+        console.log(this.$auth.$state.loggedIn )
         let params = {
           id : post.id,
           title : title,
@@ -154,11 +163,17 @@
 
       async updatePostTitle(post) {
           await this.$axios.put(`/blog_posts/${post.id}`, this.setTitle(post))
-        //this.$store.dispatch('updatePostTitle', {post});
-        this.postEditId = ''
-        console.log(this.setTitle(post))
-        }
+        .then((response) => {
+          //this.$store.dispatch('updatePostTitle', {post});
+          console.log(response.status)
+          this.postEditId = '';
+          this.success = true
+        }).catch(function (error) {
+          error
+              alert(' Access Denied! You are not authorized to edit this content');
+            })
 
+        },
 
       },
 
@@ -171,6 +186,7 @@
       mdbCardText,
       mdbBtn,
       mdbInput,
+      mdbAlert
     },
   };
 </script>

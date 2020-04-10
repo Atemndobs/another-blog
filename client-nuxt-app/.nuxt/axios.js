@@ -149,8 +149,7 @@ export default (ctx, inject) => {
     "head": {},
     "post": {},
     "put": {},
-    "patch": {},
-    "Content-Type": "application/ld+json; charset=utf-8"
+    "patch": {}
 }
 
   const axiosOptions = {

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <UserAuthForm buttonText="Login" :submitForm="loginUser" :signIn="login"/>
+  <UserAuthForm buttonText="Login" :submitForm="loginUser" :signIn="login" signup="Signup"/>
 </div>
 
 </template>
@@ -23,22 +23,24 @@ import UserAuthForm from "../components/UserAuthForm";
           data: logininfo
         })
         .then(() => {
+          this.$auth.$state.loggedIn = true
           this.$store.state.auth.loggedIn = true;
           this.$store.state.auth.user = logininfo
-          this.$store.state.auth.strategy = 'local'
-          console.log(this.$auth)
-        });
-
-
+          //this.$store.state.auth.setStrategy = 'local'
+          console.log(this.$store)
+        }).catch(function (error) {
+             console.log(error)
+           })
+         ;
          this.$axios.post('http://localhost:3000/login', logininfo)
            .then(function (response) {
-            // response.config.data =
              console.log('ATEM')
-             console.log($auth );
            })
       },
+
+
     }
-  };
+  };//
 
 </script>
 

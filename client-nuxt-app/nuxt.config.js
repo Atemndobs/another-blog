@@ -57,9 +57,7 @@ export default {
   },
   axios: {
     baseURL: 'https://127.0.0.1:8000/api',
-    headers: {
-      'Content-Type': 'application/ld+json; charset=utf-8',
-    }
+    baseURLLive: 'https://another-blog-admin.herokuapp.com/api',
   },
 
   auth: {
@@ -67,14 +65,23 @@ export default {
       local: {
         endpoints: {
           login: { url: '/login_check', method: 'post', propertyName: 'token' },
-          logout: { url: '/logout', method: 'post' },
+          logout: { url: 'https://127.0.0.1:8000/logout', method: 'get' },
           user: { url: `/users/7`, method: 'get', propertyName: 'user' },
+        },
+        redirrect: {
+          login: '/blogposts',
+          logout: '/'
         },
         // tokenRequired: true,
          tokenType: 'bearer'
         // autoFetchUser: true
-      }
-    }
-  }
+      },
+      github: {
+        client_id: '54db107e16189892c68b',
+        client_secret: 'a7bf6b7a6011a8686cf7cf304151e03fe7d037e4'
+      },
+    },
+
+  },
 
 }

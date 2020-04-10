@@ -25,26 +25,25 @@
           </mdb-dropdown>-->
         </mdb-navbar-nav>
 
-        <div v-if="$auth.loggedIn">
-           {{$auth.user.username}}
-          <mdb-btn  @click="$auth.logout">Logout</mdb-btn>
-          <ul class="navbar-nav ml-auto nav-flex-icons">
-            <mdb-nav-item href="#">  <i class="fab fa-twitter"></i></mdb-nav-item>
-            <mdb-nav-item href="#"> <i class="fab fa-google-plus-g"></i></mdb-nav-item>
-            <mdb-nav-item href="#"> <i class="fas fa-user"></i></mdb-nav-item>
+        <div v-if="$auth.$state.loggedIn">
+          <ul class="navbar-nav ml-auto nav-flex-icons" >
+            <mdb-nav-item href="https://twitter.com/Atemkeng5">  <i class="fab fa-twitter"></i></mdb-nav-item>
+            <mdb-nav-item href="https://github.com/Atemndobs"> <i class="fab fa-github"></i></mdb-nav-item>
+           <mdb-btn><i class="fas fa-user"></i>  {{$auth.user.username}}</mdb-btn>
+          <nuxt-link :to="`/login`" ><mdb-btn  @click="signOut">Logout</mdb-btn></nuxt-link>
+            {{$auth.loggedIn}}
           </ul>
         </div>
         <div v-else>
           <nuxt-link to="/login"> <mdb-btn  @click="">Login</mdb-btn></nuxt-link>
           <nuxt-link to="/register"> <mdb-btn  @click="">register</mdb-btn></nuxt-link>
-          <mdb-btn @click="chechLogin">AUTH</mdb-btn>
         </div>
 
       </mdb-navbar-toggler>
       </div>
 
     </mdb-navbar>
-
+    <mdb-btn @click="checkLogin">AUTH</mdb-btn>
     <div class="container">
     <nuxt/>
     </div>
@@ -75,12 +74,22 @@
     },
 
     methods :{
-      chechLogin() {
-        this.$auth.state.loggedIn = true;
-        console.log('ATEM')
-        console.log(this.$auth )
+      signOut() {
+        this.$axios.get('https://127.0.0.1:8000/logout');
+        this.$auth.$state.loggedIn = false
+        this.$auth.setToken('local', '');
+        this.$auth.setToken('github', '');
+        localStorage.github= ''
+        console.log(this.$auth.$state)
+      },
+
+      checkLogin(){
+
+       console.log(this.$auth.state)
       }
     }
+
+
   };
 </script>
 
