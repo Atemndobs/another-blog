@@ -1,5 +1,7 @@
 <template>
   <div>
+
+
     <SearchPosts v-on:search-text="searchText"/>
     <BlogPost v-for="post in $store.state.posts" :key="post.id" :id="post.id" :title="post.title"
               :content="post.content"

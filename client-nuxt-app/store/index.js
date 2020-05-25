@@ -1,5 +1,4 @@
 import {format} from 'timeago.js';
-import Api from "@/services/api";
 
 export const strict = false;
 

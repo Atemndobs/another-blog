@@ -64,11 +64,11 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/login_check', method: 'post', propertyName: 'token' },
+          login: { url: 'https://127.0.0.1:8000/login_check', method: 'post', propertyName: 'token' },
           logout: { url: 'https://127.0.0.1:8000/logout', method: 'get' },
           user: { url: `/users/7`, method: 'get', propertyName: 'user' },
         },
-        redirrect: {
+        redirect: {
           login: '/blogposts',
           logout: '/'
         },
@@ -83,5 +83,9 @@ export default {
     },
 
   },
+  server: {
+    port: process.env.PORT || 7000
+  },
+
 
 }

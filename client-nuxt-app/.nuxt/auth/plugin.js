@@ -15,7 +15,7 @@ export default function (ctx, inject) {
 
   // Register strategies
   // local
-  $auth.registerStrategy('local', new scheme_003d9a64($auth, {"endpoints":{"login":{"url":"/login_check","method":"post","propertyName":"token"},"logout":{"url":"https://127.0.0.1:8000/logout","method":"get"},"user":{"url":"/users/7","method":"get","propertyName":"user"}},"redirrect":{"login":"/blogposts","logout":"/"},"tokenType":"bearer","_name":"local"}))
+  $auth.registerStrategy('local', new scheme_003d9a64($auth, {"endpoints":{"login":{"url":"https://127.0.0.1:8000/login_check","method":"post","propertyName":"token"},"logout":{"url":"https://127.0.0.1:8000/logout","method":"get"},"user":{"url":"/users/7","method":"get","propertyName":"user"}},"redirect":{"login":"/blogposts","logout":"/"},"tokenType":"bearer","_name":"local"}))
 
   // github
   $auth.registerStrategy('github', new scheme_23514a38($auth, {"client_id":"54db107e16189892c68b","_name":"github","authorization_endpoint":"https://github.com/login/oauth/authorize","token_endpoint":"https://github.com/login/oauth/access_token","userinfo_endpoint":"https://api.github.com/user","scope":["user","email"],"access_token_endpoint":"/_auth/oauth/github/authorize","response_type":"code"}))

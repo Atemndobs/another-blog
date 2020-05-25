@@ -1,5 +1,12 @@
 <template>
   <div>
+    <mdb-input v-model="message" placeholder="edit me">
+      <p>Message is: {{ message }}</p></mdb-input>
+
+    <span>Multiline message is:</span>
+    <p style="white-space: pre-line;">{{ message }}</p>
+    <br>
+    <mdb-input v-model="message" placeholder="add multiple lines"></mdb-input>
 
     <nuxt-link to="/blogposts">
       <mdb-btn color="primary">👈 Back To Posts</mdb-btn>

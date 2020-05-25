@@ -1,7 +1,7 @@
 {
-  "name": "nuxty-atem",
+  "name": "nuxty-blog",
   "version": "1.0.0",
-  "description": "My geometric Nuxt.js project",
+  "description": "Nuxt front end for another-Blog",
   "author": "Bertrand Atemkeng",
   "private": true,
   "scripts": {
